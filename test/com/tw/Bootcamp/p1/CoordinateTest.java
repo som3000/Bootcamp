@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CoordinateTest {
 
   @Test
-  void ShouldCalculateTheLengthBetweenPoints() {
+  void ShouldCalculateTheDxBetweenPoints() {
     Coordinate bottomLeft = new Coordinate(2,2);
     Coordinate topRight  = new Coordinate(5,5);
-    assertEquals(3, bottomLeft.length(topRight));
+    assertEquals(3, bottomLeft.dx(topRight));
   }
 
   @Test
-  void ShouldCalculateTheBreadthBetweenPoints() {
+  void ShouldCalculateTheDyBetweenPoints() {
     Coordinate bottomLeft = new Coordinate(2,2);
     Coordinate topRight  = new Coordinate(5,5);
 
-    assertEquals(3, bottomLeft.breadth(topRight));
+    assertEquals(3, bottomLeft.dy(topRight));
   }
 }

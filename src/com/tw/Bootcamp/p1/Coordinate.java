@@ -9,10 +9,10 @@ public class Coordinate {
     this.y = y;
   }
 
-  public int length(Coordinate p){
+  public int dx(Coordinate p){
     return Math.abs(this.x - p.x);
   }
-  public int breadth(Coordinate p){
+  public int dy(Coordinate p){
     return Math.abs(this.y - p.y);
   }
 }
