@@ -13,4 +13,8 @@ public class Rectangle {
   public int area() {
     return bottomLeft.breadth(topRight) * bottomLeft.length(topRight);
   }
+
+  public int perimeter() {
+    return 2 * (bottomLeft.breadth(topRight) + bottomLeft.length(topRight));
+  }
 }

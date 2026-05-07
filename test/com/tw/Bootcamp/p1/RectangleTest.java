@@ -14,4 +14,12 @@ class RectangleTest {
       assertEquals(9, rectangle.area());
   }
 
+  @Test
+  void Perimeter(){
+    Coordinate bottomLeft = new Coordinate(2,2);
+    Coordinate topRight  = new Coordinate(5,5);
+    Rectangle rectangle  = new Rectangle(bottomLeft, topRight);
+    assertEquals(12, rectangle.perimeter());
+  }
+
 }
