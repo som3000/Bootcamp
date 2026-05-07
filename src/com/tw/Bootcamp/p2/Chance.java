@@ -3,7 +3,6 @@ package com.tw.Bootcamp.p2;
 import java.util.Objects;
 
 public class Chance {
-
   private final double chance;
 
   private Chance(double chance){
@@ -11,28 +10,35 @@ public class Chance {
   }
 
   public Chance and(Chance chance) {
-    return new Chance(chance.chance * this.chance);
+    return Chance.create(chance.chance * this.chance);
   }
 
   public Chance or(Chance chance) {
-    final Chance chanceOfIntersection = this.and(chance);
-
-    return new Chance(chance.chance + this.chance - chanceOfIntersection.chance);
+    return Chance.create(chance.chance + this.chance - this.and(chance).chance);
   }
 
-  public Chance deMorganLaw(Chance chance) {
-    final Chance ComplementOfA = this.complementChance(chance);
-    final Chance ComplementOfB = this.complementChance(this);
-
-    return this.complementChance(ComplementOfA.or(ComplementOfB));
+  public Chance deMorganLaw(Chance other) {
+    return this.not().and(other.not()).not();
   }
 
-  private Chance complementChance(Chance chance) {
-    return new Chance(1 - chance.chance);
+  private Chance not() {
+    return Chance.create(1 - this.chance);
   }
 
-  public static Chance create(double chance) {
+  public static Chance createChance(double chance) throws ImpossibleChanceCreationError {
+    if(chance < 0 || chance > 1) {
+      throw new ImpossibleChanceCreationError("Impossible Chance Creation");
+    }
+
     return new Chance(chance);
+  }
+
+  private static Chance create(double chance) {
+    return new Chance(chance);
+  }
+
+  public static Chance not(double chance) {
+    return create(1 - chance);
   }
 
   @Override
