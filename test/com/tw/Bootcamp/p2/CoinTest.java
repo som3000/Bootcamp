@@ -9,5 +9,10 @@ class CoinTest {
   void ShouldCalculateChanceOfTail(){
     assertEquals(0.5, Coin.chanceOfGettingTail());
   }
+  
+  @Test
+  void ShouldCalculateChanceOfNotTail(){
+    assertEquals(0.5, Coin.chanceOfNotGettingTail());
+  }
 
 }
