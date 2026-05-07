@@ -20,6 +20,24 @@ class ChanceTest {
   }
 
   @Test
+  void ShouldRepresentChanceOfGettingTailsInFlippingTwoCoins() {
+    Chance chanceOfGettingTailsInFirstCoin = Chance.create(0.5);
+    Chance chanceOfGettingTailsInSecondCoin = Chance.create(0.5);
+
+    assertEquals(Chance.create(0.25),
+            chanceOfGettingTailsInFirstCoin.and(chanceOfGettingTailsInSecondCoin));
+  }
+
+  @Test
+  void ShouldRepresentChanceOfGettingAtLeastOneTailInFlippingTwoCoins() {
+    Chance chanceOfGettingTailsInFirstCoin = Chance.create(0.5);
+    Chance chanceOfGettingTailsInSecondCoin = Chance.create(0.5);
+
+    assertEquals(Chance.create(0.75),
+            chanceOfGettingTailsInFirstCoin.or(chanceOfGettingTailsInSecondCoin));
+  }
+
+  @Test
   void ShouldRepresentChanceOfGettingThreeOnDiceRoll() {
     Chance chanceOfGettingThree = Chance.create(0.166);
 
