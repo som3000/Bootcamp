@@ -4,38 +4,38 @@ import java.util.Objects;
 
 public class Length {
   private final double length;
-  private final Unit unit;
+  private final LengthUnit lengthUnit;
 
-  public Length(double length, Unit unit) {
+  public Length(double length, LengthUnit lengthUnit) {
     this.length = length;
-    this.unit = unit;
+    this.lengthUnit = lengthUnit;
   }
 
   public Length add(Length other) {
-    return new Length(this.length + other.length, Unit.INCHES);
+    return new Length(this.length + other.length, LengthUnit.INCHES);
   }
 
   public static Length createFeet(double ft) throws InvalidMeasure {
     validateMeasurement(ft);
 
-    return new Length(Unit.FEET.inBaseUnits(ft), Unit.FEET);
+    return new Length(LengthUnit.FEET.inBaseUnits(ft), LengthUnit.FEET);
   }
   public static Length createCm(double cm) throws InvalidMeasure {
     validateMeasurement(cm);
 
-    return new Length(Unit.CENTIMETRE.inBaseUnits(cm), Unit.CENTIMETRE);
+    return new Length(LengthUnit.CENTIMETRE.inBaseUnits(cm), LengthUnit.CENTIMETRE);
   }
 
   public static Length createInches(double in) throws InvalidMeasure {
     validateMeasurement(in);
 
-    return new Length(Unit.INCHES.inBaseUnits(in), Unit.INCHES);
+    return new Length(LengthUnit.INCHES.inBaseUnits(in), LengthUnit.INCHES);
   }
 
   public static Length createMm(double mm) throws InvalidMeasure {
     validateMeasurement(mm);
 
-    return new Length(Unit.MILLIMETRE.inBaseUnits(mm), Unit.MILLIMETRE);
+    return new Length(LengthUnit.MILLIMETRE.inBaseUnits(mm), LengthUnit.MILLIMETRE);
   }
 
   private static void validateMeasurement(double measure) throws InvalidMeasure {

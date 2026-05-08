@@ -4,27 +4,27 @@ import java.util.Objects;
 
 public class Volume {
   private final double volume;
-  private final Unit unit;
+  private final VolumeUnit unit;
 
-  public Volume(double volume, Unit unit) {
+  public Volume(double volume, VolumeUnit unit) {
     this.volume = volume;
     this.unit = unit;
   }
 
   public Volume add(Volume other) {
-    return new Volume(this.volume + other.volume, Unit.LITRE);
+    return new Volume(this.volume + other.volume, VolumeUnit.LITRE);
   }
 
   public static Volume createLitre(double litre) throws InvalidMeasure {
     validateMeasurement(litre);
 
-    return new Volume(Unit.LITRE.inBaseUnits(litre), Unit.LITRE);
+    return new Volume(VolumeUnit.LITRE.inBaseUnits(litre), VolumeUnit.LITRE);
   }
 
   public static Volume createGallon(double gal) throws InvalidMeasure {
     validateMeasurement(gal);
 
-    return new Volume(Unit.GALLON.inBaseUnits(gal), Unit.GALLON);
+    return new Volume(VolumeUnit.GALLON.inBaseUnits(gal), VolumeUnit.GALLON);
   }
 
   private static void validateMeasurement(double measure) throws InvalidMeasure {
