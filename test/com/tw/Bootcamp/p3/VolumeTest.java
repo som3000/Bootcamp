@@ -37,4 +37,14 @@ class VolumeTest {
 
     assertEquals(threeLitre, oneLitre.add(twoLitre));
   }
+
+  @Test
+  void shouldAddTwoDistinctVolumes() throws InvalidMeasure {
+    final Volume oneGallon = Volume.createGallon(1);
+    final Volume oneLitre = Volume.createLitre(1);
+
+    final Volume litres = Volume.createLitre(4.78);
+
+    assertEquals(litres, oneGallon.add(oneLitre));
+  }
 }

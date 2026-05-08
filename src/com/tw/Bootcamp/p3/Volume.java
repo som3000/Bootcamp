@@ -12,7 +12,7 @@ public class Volume {
   }
 
   public Volume add(Volume other) {
-    return new Volume(this.volume + other.volume, this.unit);
+    return new Volume(this.volume + other.volume, Unit.LITRE);
   }
 
   public static Volume createLitre(double litre) throws InvalidMeasure {
