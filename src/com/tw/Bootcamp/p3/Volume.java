@@ -30,6 +30,7 @@ public class Volume {
   @Override
   public boolean equals(Object o) {
     if (!(o instanceof Volume other)) return false;
+
     return Math.abs(volume- other.volume) <= 0.1;
   }
 

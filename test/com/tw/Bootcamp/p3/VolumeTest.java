@@ -11,11 +11,20 @@ class VolumeTest {
     final Volume gal = Volume.createGallon(1);
 
     assertEquals(litre, gal);
+    assertEquals(litre.hashCode(), gal.hashCode());
   }
 
   @Test
   void shouldThrowErrorOnInvalidMeasurementCreation() throws InvalidMeasure {
     assertThrows(InvalidMeasure.class, () -> Volume.createGallon(-1));
     assertThrows(InvalidMeasure.class, () -> Volume.createLitre(-5));
+  }
+
+  @Test
+  void shouldReturnFalseOnInvalidComparison() throws InvalidMeasure {
+    final Volume litre = Volume.createLitre(1);
+    final Length ft = Length.createFeet(1);
+
+    assertNotEquals(litre, ft);
   }
 }

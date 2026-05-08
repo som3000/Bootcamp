@@ -28,6 +28,7 @@ class LengthTest {
     final Length mm = Length.createMm(10);
 
     assertEquals(cm, mm);
+    assertEquals(cm.hashCode(), mm.hashCode());
   }
 
   @Test
@@ -36,5 +37,14 @@ class LengthTest {
     assertThrows(InvalidMeasure.class, () -> Length.createMm(-5));
     assertThrows(InvalidMeasure.class, () -> Length.createFeet(-10));
     assertThrows(InvalidMeasure.class, () -> Length.createInches(-2));
+  }
+
+
+  @Test
+  void shouldReturnFalseOnInvalidComparison() throws InvalidMeasure {
+    final Length cm = Length.createCm(1);
+    final Volume gal = Volume.createGallon(1);
+
+    assertNotEquals(gal, cm);
   }
 }
