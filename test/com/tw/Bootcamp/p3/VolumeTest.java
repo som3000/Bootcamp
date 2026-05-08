@@ -27,4 +27,14 @@ class VolumeTest {
 
     assertNotEquals(litre, ft);
   }
+
+  @Test
+  void shouldAddTwoSimilarVolumes() throws InvalidMeasure {
+    final Volume oneLitre = Volume.createLitre(1);
+    final Volume twoLitre = Volume.createLitre(2);
+
+    final Volume threeLitre = Volume.createLitre(3);
+
+    assertEquals(threeLitre, oneLitre.add(twoLitre));
+  }
 }

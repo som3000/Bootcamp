@@ -47,4 +47,24 @@ class LengthTest {
 
     assertNotEquals(gal, cm);
   }
+
+  @Test
+  void shouldAddTwoSimilarLengths() throws InvalidMeasure {
+    final Length oneInch = Length.createInches(1);
+    final Length twoInches = Length.createInches(2);
+
+    final Length threeInches = Length.createInches(3);
+
+    assertEquals(threeInches, oneInch.add(twoInches));
+  }
+
+  @Test
+  void shouldAddTwoDistinctLengths() throws InvalidMeasure {
+    final Length inch = Length.createInches(2);
+    final Length cm = Length.createCm(2.5);
+
+    final Length threeInches = Length.createInches(3);
+
+    assertEquals(threeInches, inch.add(cm));
+  }
 }
