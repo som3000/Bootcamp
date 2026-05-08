@@ -1,5 +1,5 @@
 package com.tw.Bootcamp.p3;
 
 public enum Unit {
-  INCHES, FEET, CM
+  INCHES, FEET, CM,GALLON,LITER
 }

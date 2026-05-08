@@ -36,6 +36,5 @@ class LengthTest {
     assertThrows(InvalidMeasure.class, () -> Length.createMm(-5));
     assertThrows(InvalidMeasure.class, () -> Length.createFeet(-10));
     assertThrows(InvalidMeasure.class, () -> Length.createInches(-2));
-
   }
 }

@@ -40,8 +40,8 @@ public class Length {
 
   @Override
   public boolean equals(Object o) {
-    if (!(o instanceof Length length1)) return false;
-    return Math.abs(length- length1.length) <= 0.1;
+    if (!(o instanceof Length other)) return false;
+    return Math.abs(length- other.length) <= 0.1;
   }
 
   @Override
