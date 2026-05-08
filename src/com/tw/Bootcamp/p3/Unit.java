@@ -1,6 +1,7 @@
 package com.tw.Bootcamp.p3;
 
-public enum Unit {FEET (0.305),
+public enum Unit {
+  FEET (0.305),
   INCHES (0.0254),
   CENTIMETRE (0.01),
   MILLIMETRE (0.001),
