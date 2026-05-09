@@ -25,8 +25,13 @@ public class Bag {
     return ball.isRed() && this.bag.getOrDefault(Colors.GREEN, 0) * 2 <= this.bag.getOrDefault(Colors.RED, 0);
   }
 
+
+  private boolean isYellowBallLimitExceeds(Ball ball) {
+    return ball.isYellow() && (double) (this.bag.getOrDefault(Colors.YELLOW, 0) + 1) / (totalBalls + 1) > 0.4;
+  }
+
   private boolean isLimitExceeded(Ball ball) {
-    return isGreenBallLimitExceeds(ball) || isRedBallLimitExceeds(ball);
+    return isGreenBallLimitExceeds(ball) || isRedBallLimitExceeds(ball) || isYellowBallLimitExceeds(ball);
   }
 
   public boolean add(Ball ball) {

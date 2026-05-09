@@ -54,4 +54,15 @@ class BagTest {
     assertTrue(bag.add(redBall));
     assertFalse(bag.add(redBall));
   }
+
+  @Test
+  void ShouldLimitYellowBeAtMostFortyPercentOfTheTotalInsideBag() {
+    bag.add(greenBall);
+    bag.add(redBall);
+    bag.add(redBall);
+
+    assertTrue(bag.add(yellowBall));
+    assertTrue(bag.add(yellowBall));
+    assertFalse(bag.add(yellowBall));
+  }
 }
