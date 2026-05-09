@@ -1,44 +1,47 @@
 package com.tw.Bootcamp.p5;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Bag {
   private final Map<Colors, Integer> bag;
   private final int capacity;
+  private final List<Rules> rules;
   private int totalBalls = 0;
 
-  private Bag(int capacity) {
+  private Bag(int capacity, List<Rules> rules) {
     this.capacity = capacity;
+    this.rules = rules;
     this.bag = new LinkedHashMap<>();
   }
 
-  private boolean isFull(){
-    return totalBalls >= capacity;
+  public boolean isFull(Ball ball){
+    return totalBalls >= this.capacity;
   }
 
-  private boolean isGreenBallLimitExceeds(Ball ball) {
+  public boolean isGreenBallLimitExceeds(Ball ball) {
     return ball.isGreen() && this.bag.getOrDefault(Colors.GREEN, 0) >= 3;
   }
 
-  private boolean isRedBallLimitExceeds(Ball ball) {
+  public boolean isRedBallLimitExceeds(Ball ball) {
     return ball.isRed() && this.bag.getOrDefault(Colors.GREEN, 0) * 2 <= this.bag.getOrDefault(Colors.RED, 0);
   }
 
-
-  private boolean isYellowBallLimitExceeds(Ball ball) {
+  public boolean isYellowBallLimitExceeds(Ball ball) {
     return ball.isYellow() && (double) (this.bag.getOrDefault(Colors.YELLOW, 0) + 1) / (totalBalls + 1) > 0.4;
   }
 
   private boolean isLimitExceeded(Ball ball) {
-    return isGreenBallLimitExceeds(ball) || isRedBallLimitExceeds(ball) || isYellowBallLimitExceeds(ball);
+    for (Rules action: rules) {
+      if (action.apply(this, ball)) return true;
+    }
+
+    return false;
   }
 
   public boolean add(Ball ball) {
-    if(isFull() || isLimitExceeded(ball)){
-      return false;
-    }
+    if(isLimitExceeded(ball)) return false;
 
     if(ball.isGreen()) this.bag.merge(Colors.GREEN, 1, Integer::sum);
     if(ball.isRed()) this.bag.merge(Colors.RED, 1, Integer::sum);
@@ -66,7 +69,7 @@ public class Bag {
     System.out.println(this.summary());
   }
 
-  public static Bag create(int capacity) {
-    return new Bag(capacity);
+  public static Bag create(int capacity, List<Rules> rules) {
+    return new Bag(capacity, rules);
   }
 }
