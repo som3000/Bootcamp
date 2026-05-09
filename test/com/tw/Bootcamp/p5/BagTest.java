@@ -3,8 +3,7 @@ package com.tw.Bootcamp.p5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BagTest {
 
@@ -64,5 +63,20 @@ class BagTest {
     assertTrue(bag.add(yellowBall));
     assertTrue(bag.add(yellowBall));
     assertFalse(bag.add(yellowBall));
+  }
+
+  @Test
+  void ShouldGenerateSummaryOfTheContentsOfBag() {
+    bag.add(blueBall);
+    bag.add(greenBall);
+    bag.add(redBall);
+    bag.add(yellowBall);
+    bag.add(redBall);
+    bag.add(blueBall);
+    bag.add(blueBall);
+    bag.add(yellowBall);
+    bag.add(yellowBall);
+
+    assertEquals("BLUE : 3\nGREEN : 1\nRED : 2\nYELLOW : 3\n\nTotal : 9", bag.summary().toString());
   }
 }

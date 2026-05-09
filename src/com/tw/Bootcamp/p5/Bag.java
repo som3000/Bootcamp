@@ -1,6 +1,7 @@
 package com.tw.Bootcamp.p5;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Bag {
@@ -10,7 +11,7 @@ public class Bag {
 
   private Bag(int capacity) {
     this.capacity = capacity;
-    this.bag = new HashMap<>();
+    this.bag = new LinkedHashMap<>();
   }
 
   private boolean isFull(){
@@ -47,6 +48,22 @@ public class Bag {
     totalBalls++;
 
     return true;
+  }
+
+  public StringBuilder summary() {
+    final StringBuilder report = new StringBuilder();
+
+    this.bag.forEach((Colors color, Integer count) -> {
+      report.append(color.name()).append(" : ").append(count).append("\n");
+    });
+
+    report.append("\n").append("Total : ").append(totalBalls);
+
+    return report;
+  }
+
+  public void displaySummary() {
+    System.out.println(this.summary());
   }
 
   public static Bag create(int capacity) {
