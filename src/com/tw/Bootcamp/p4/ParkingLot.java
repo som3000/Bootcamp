@@ -3,27 +3,23 @@ package com.tw.Bootcamp.p4;
 import java.util.ArrayList;
 
 public class ParkingLot {
-  private final ArrayList<String> lot;
-  private final int availableSpaces;
+  private final int id;
+  private final int capacity;
+  private final ArrayList<Vehicle> slots;
 
-  private ParkingLot(int availableSpaces) {
-    this.availableSpaces = availableSpaces;
-    this.lot = new ArrayList<>(availableSpaces);
+  private ParkingLot(int id, int capacity, LotMonitor monitor) {
+    this.id = id;
+    this.capacity = capacity;
+    this.slots = new ArrayList<>(capacity);
   }
 
-  public void parkCar(String carId) throws ParkingLimitExceeds {
-    if(isFull()) {
-      throw new ParkingLimitExceeds("Parking lot is already full");
-    }
-
-    lot.add(carId);
+  public boolean park(Vehicle vehicle) {
+    slots.add(vehicle);
+//    notifyOnPark();
+    return true;
   }
 
-  public boolean isFull() {
-    return this.lot.size() == this.availableSpaces;
-  }
-
-  public static ParkingLot create(int vacantSpaces) {
-    return new ParkingLot(vacantSpaces);
-  }
+//  public static ParkingLot create(int id, int capacity) {
+//    return new ParkingLot(id, capacity);
+//  }
 }
