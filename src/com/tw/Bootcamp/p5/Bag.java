@@ -1,34 +1,45 @@
 package com.tw.Bootcamp.p5;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Bag {
-  private final List<Ball> collection;
+  private final Map<Colors, Integer> bag;
   private final int capacity;
-  private int noOfGreenBalls = 0;
+  private int totalBalls = 0;
 
   private Bag(int capacity) {
     this.capacity = capacity;
-    this.collection = new ArrayList<>(capacity);
+    this.bag = new HashMap<>();
   }
 
   private boolean isFull(){
-    return collection.size()>= capacity;
+    return totalBalls >= capacity;
   }
 
   private boolean isGreenBallLimitExceeds(Ball ball) {
-    return ball.isGreen() && this.noOfGreenBalls >= 3;
+    return ball.isGreen() && this.bag.getOrDefault(Colors.GREEN, 0) >= 3;
+  }
+
+  private boolean isRedBallLimitExceeds(Ball ball) {
+    return ball.isRed() && this.bag.getOrDefault(Colors.GREEN, 0) * 2 <= this.bag.getOrDefault(Colors.RED, 0);
+  }
+
+  private boolean isLimitExceeded(Ball ball) {
+    return isGreenBallLimitExceeds(ball) || isRedBallLimitExceeds(ball);
   }
 
   public boolean add(Ball ball) {
-    if(isFull() || isGreenBallLimitExceeds(ball)){
+    if(isFull() || isLimitExceeded(ball)){
       return false;
     }
 
-    if(ball.isGreen()) this.noOfGreenBalls++;
+    if(ball.isGreen()) this.bag.merge(Colors.GREEN, 1, Integer::sum);
+    if(ball.isRed()) this.bag.merge(Colors.RED, 1, Integer::sum);
+    if(ball.isYellow()) this.bag.merge(Colors.YELLOW, 1, Integer::sum);
+    if(ball.isBlue()) this.bag.merge(Colors.BLUE, 1, Integer::sum);
 
-    this.collection.add(ball);
+    totalBalls++;
 
     return true;
   }

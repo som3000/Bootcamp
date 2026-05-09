@@ -3,7 +3,8 @@ package com.tw.Bootcamp.p5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BagTest {
 
@@ -43,6 +44,14 @@ class BagTest {
     assertTrue(bag.add(greenBall));
     assertFalse(bag.add(greenBall));
     assertTrue(bag.add(yellowBall));
+  }
 
+  @Test
+  void ShouldLimitRedBeAtMostTwiceOfGreenBallsInsideBag() {
+    bag.add(greenBall);
+
+    assertTrue(bag.add(redBall));
+    assertTrue(bag.add(redBall));
+    assertFalse(bag.add(redBall));
   }
 }
